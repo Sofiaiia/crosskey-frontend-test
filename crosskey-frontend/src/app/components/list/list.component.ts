@@ -23,7 +23,6 @@ export class ListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    //localStorage.clear()
     this.getAllTodos();
   }
 
