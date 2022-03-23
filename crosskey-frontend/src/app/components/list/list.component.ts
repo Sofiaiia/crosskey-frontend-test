@@ -28,9 +28,12 @@ export class ListComponent implements OnInit {
   }
 
   addTodo(): void{
-    this.todos.push(this.newTodo.value);
-    localStorage.setItem("todos", JSON.stringify(this.todos));
-    this.getAllTodos();
+    if(this.newTodo.valid){
+      this.todos.push(this.newTodo.value);
+      localStorage.setItem("todos", JSON.stringify(this.todos));
+      this.getAllTodos();
+      this.newTodo.reset();
+    }
   }
 
   removeTodo(key:number): void{
@@ -49,21 +52,11 @@ export class ListComponent implements OnInit {
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex,
-      );
+      transferArrayItem(event.previousContainer.data,event.container.data,event.previousIndex,event.currentIndex,);
     }
   }
 
   showForm():void{
-    this.seeForm = true;
+    this.seeForm ? this.seeForm= false : this.seeForm = true;
   }
-
-  hideForm(): void{
-    this.seeForm = false;
-  }
-  
 }

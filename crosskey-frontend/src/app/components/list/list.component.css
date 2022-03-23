@@ -1,8 +1,15 @@
 .card{
-    width: 60%;
+    width: 30rem;
     margin-bottom: 30px;
-    background-color: #000000;
+    background-color: #112b2b;
     color: white;
+    padding-left: 30px;
+    box-shadow: 10px 5px 5px black;
+    transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+}
+.card:hover{
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
 }
 
 .formCard{
@@ -39,12 +46,12 @@
 }
 
 .addButton{
-    background-color: #112b2b;
+    background-color: #00B0B9;
     color:white;
     margin-bottom: 1.25rem;
 }
 .addButton:hover, .plusButton:hover{
-    background-color: #00B0B9;
+    background-color: #112b2b;
 }
 
 .noVisibleForm{
@@ -54,7 +61,21 @@
     margin-bottom: 30px;
 }
 .plusButton{
-    background-color: #112b2b;
+    background-color: #00B0B9;
 }
+.card-title{
+    font-size: 30px;
+}
+h2{
+    font-size: 35px;
+}
+
+@media screen and (max-width: 900px){
+    .form{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
 
 

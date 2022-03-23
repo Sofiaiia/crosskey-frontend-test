@@ -1,5 +1,5 @@
 .header{
-    background-color: #112b2b;
+    background-color: black;
     height: 50px;
     color: rgb(255, 255, 255);
     display: flex;
@@ -8,4 +8,6 @@
     padding-top: 20px;
     padding-bottom: 20px;
 }
-
+.headerText{
+    font-size: 50px;
+}
