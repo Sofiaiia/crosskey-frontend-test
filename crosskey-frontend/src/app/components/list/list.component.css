@@ -1,0 +1,60 @@
+.card{
+    width: 60%;
+    margin-bottom: 30px;
+    background-color: #000000;
+    color: white;
+}
+
+.formCard{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 30px;
+}
+
+.form{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.list{
+    display: flex;
+    justify-content: center;
+}
+
+.input{
+    margin-right: 30px;
+}
+
+.actionButtons{
+    display: flex;
+    justify-content: end;
+}
+
+.deleteButton{
+    color: white;
+    background-color: red;
+}
+
+.addButton{
+    background-color: #112b2b;
+    color:white;
+    margin-bottom: 1.25rem;
+}
+.addButton:hover, .plusButton:hover{
+    background-color: #00B0B9;
+}
+
+.noVisibleForm{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.plusButton{
+    background-color: #112b2b;
+}
+
+

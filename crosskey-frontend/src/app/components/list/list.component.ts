@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators} from "@angular/forms";
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-list',
@@ -7,9 +9,61 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
-  constructor() { }
+  todos: any[] = [];
+  seeForm: boolean = false;
+
+  newTodo = this.formBuilder.group({
+    date: ['', [Validators.required]],
+    description: ['',[Validators.required]],
+    priority: ['',[Validators.required]]
+  });
+
+  constructor(
+    private formBuilder: FormBuilder
+  ) { }
 
   ngOnInit(): void {
+    //localStorage.clear()
+    this.getAllTodos();
   }
 
+  addTodo(): void{
+    this.todos.push(this.newTodo.value);
+    localStorage.setItem("todos", JSON.stringify(this.todos));
+    this.getAllTodos();
+  }
+
+  removeTodo(key:number): void{
+    this.todos.splice(key,1);
+    localStorage.setItem("todos", JSON.stringify(this.todos));
+    this.getAllTodos();
+  }
+
+  getAllTodos():void{
+    if(localStorage.length > 0) {
+      this.todos = JSON.parse(localStorage.getItem('todos')||JSON.stringify(['default']));
+      this.todos = this.todos.reverse();
+    }
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    }
+  }
+
+  showForm():void{
+    this.seeForm = true;
+  }
+
+  hideForm(): void{
+    this.seeForm = false;
+  }
+  
 }

@@ -1,1 +1,61 @@
-<p>list works!</p>
+<div>
+    <div *ngIf="seeForm">
+        <mat-card class="formCard">
+            <button mat-fab (click)="hideForm()" class="addButton">
+                <mat-icon>close</mat-icon>
+            </button> 
+            <h2>New todo: </h2>  
+                <div class="formBox">
+                    <form [formGroup]="newTodo" (ngSubmit)="addTodo()" class="form">
+                        <mat-form-field class="input" appearance="outline">
+                            <mat-label for="date">Due date</mat-label>
+                            <input matInput [matDatepicker]="picker" required formControlName="date">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                        <mat-form-field class="input" appearance="outline">
+                            <mat-label for="desc">Description</mat-label>
+                            <input matInput type="text" formControlName="description" id="desc" required>
+                        </mat-form-field>
+                        <mat-form-field class="input" appearance="outline">
+                            <mat-label for="prio">Priority</mat-label>
+                            <select matNativeControl required formControlName="priority">
+                                <option value="high">High</option>
+                                <option value="medium">Medium</option>
+                                <option value="low">Low</option>
+                            </select>
+                        </mat-form-field>
+                        <div>
+                           <button mat-raised-button type="submit" class="addButton">Add</button>
+                        </div>
+                    </form> 
+            </div>
+        </mat-card>
+    </div>
+    <div *ngIf="!seeForm" class="noVisibleForm">
+        <button mat-fab (click)="showForm()" class="plusButton">
+            <mat-icon>add</mat-icon>
+          </button>
+    </div>
+    
+
+
+    <div cdkDropList [cdkDropListData]="todos" (cdkDropListDropped)="drop($event)">
+        <h2 style="display: flex; justify-content: center;"> My todos: </h2>
+        <div *ngFor="let todo of todos; let indexOfelement=index" cdkDrag class="list">
+            <mat-card class="card">
+                <mat-card-title> {{todo.description}} </mat-card-title>
+                <mat-card-content>
+                    <p> <strong>Due date: </strong> {{todo.date | date: 'dd/MM/yyyy'}}</p>
+                    <p> <strong>Priority: </strong> {{todo.priority}} </p> 
+                </mat-card-content>
+                <mat-card-actions class="actionButtons"> 
+                    <button mat-mini-fab (click)="removeTodo(indexOfelement)" class="deleteButton">
+                        <mat-icon>delete</mat-icon>
+                      </button>    
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>
+
